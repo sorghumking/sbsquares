@@ -4,7 +4,6 @@
 from itertools import product
 from random import shuffle
 from csv import writer
-from xml.etree import ElementTree as ET
 
 def generate_squares(players, team1, team2):
     # generate (row, col) coordinates for each square of 10x10 grid
