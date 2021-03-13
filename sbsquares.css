@@ -1,6 +1,21 @@
-table, th, td {
+table {
+    border-collapse: collapse;
+}
+
+td {
   border: 1px solid black;
-  border-collapse: collapse;
   padding: 5px;
   text-align: center;
+  font-family: sans-serif;
+}
+
+td.digit {
+    min-width: 25px;
+    font-weight: bold;
+    font-size: larger;
+    background-color: #dddddd;
+}
+
+td.corner {
+    border: 0px solid #ffffff;
 }

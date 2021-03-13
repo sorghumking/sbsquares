@@ -5,12 +5,12 @@ $(document).ready(function() {
 
     $('td').on('mouseout', function() {
         highlightCommon($(this).text(), '#ffffff');
-    });     
+    });
 });
 
 // highlight all <td> cells with text that matches name
 function highlightCommon(name, color) {
-    $('td').each(function() {
+    $('td.player').each(function() {
         if ($(this).text() == name) {
             $(this).css({
             WebkitTransition : 'background-color 0.3s ease-in-out',

@@ -84,10 +84,16 @@ def generate_html(rows):
         <body>
         <table>
     """
-    for row in rows:
-        html += "  <tr>\n"
+    # score digit header row
+    html += "<tr><td class='corner'></td>"
+    for x in range(10):
+        html += f"<td class='digit'>{x}</td>"
+    html += "</tr>\n"
+
+    for idx, row in enumerate(rows):
+        html += f"  <tr><td class='digit'>{idx}</td>\n"
         for player in row:
-            html += f"    <td>{player}</td>\n"
+            html += f"    <td class='player'>{player}</td>\n"
         html += "  </tr>\n"
     html += "</table></body></html>"
     return html
