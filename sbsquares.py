@@ -4,6 +4,7 @@
 from itertools import product
 from random import shuffle
 from csv import writer
+from xml.etree import ElementTree as ET
 
 def generate_squares(players, team1, team2):
     # generate (row, col) coordinates for each square of 10x10 grid
@@ -59,7 +60,8 @@ def generate_squares(players, team1, team2):
         assert len(new_row) == 10
         rows += [new_row]
         print(new_row)
-    write_csv(rows, "sbsquares2021.csv")
+    write_html(rows, "sbsquares.html")
+    # write_csv(rows, "sbsquares2021.csv")
 
     # randomly assign teams to columns (x coordinates) or rows (y coordinates)
     teams = [team1, team2]
@@ -73,6 +75,27 @@ def write_csv(rows, filename):
         w = writer(csvfile)
         for r in rows:
             w.writerow(r)
+
+def generate_html(rows):
+    html = """<html><head>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="sbsquares.js"></script>
+        <link rel="stylesheet" href="sbsquares.css">
+        </head>
+        <body>
+        <table>
+    """
+    for row in rows:
+        html += "  <tr>\n"
+        for player in row:
+            html += f"    <td>{player}</td>\n"
+        html += "  </tr>\n"
+    html += "</table></body></html>"
+    return html
+
+def write_html(rows, filename):
+    with open(filename, 'w') as htmlfile:
+        htmlfile.write(generate_html(rows))
 
 
 if __name__ == "__main__":
