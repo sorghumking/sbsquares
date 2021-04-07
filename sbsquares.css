@@ -19,3 +19,19 @@ td.digit {
 td.corner {
     border: 0px solid #ffffff;
 }
+
+div.team1 {
+    font-size: xx-large;
+    text-align: center;
+}
+
+div.team2 {
+    font-size: xx-large;
+    text-align: center;
+    text-orientation: upright;
+    writing-mode: vertical-rl;
+}
+
+div.sbtable {
+    display: inline-block;
+}

@@ -59,7 +59,6 @@ def generate_squares(players, team1, team2):
         assert len(new_row) == 10
         rows += [new_row]
         print(new_row)
-    write_html(rows, "sbsquares.html")
     # write_csv(rows, "sbsquares2021.csv")
 
     # randomly assign teams to columns (x coordinates) or rows (y coordinates)
@@ -69,19 +68,28 @@ def generate_squares(players, team1, team2):
     row_team = teams[1]
     print(f"Columns: {col_team}. Rows: {row_team}")
 
+    write_html(rows, row_team, col_team, "sbsquares.html")
+
 def write_csv(rows, filename):
     with open(filename, 'w') as csvfile:
         w = writer(csvfile)
         for r in rows:
             w.writerow(r)
 
-def generate_html(rows):
-    html = """<html><head>
+def generate_html(rows, team1, team2):
+    html = f"""<html><head>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="sbsquares.js"></script>
         <link rel="stylesheet" href="sbsquares.css">
         </head>
         <body>
+          <div style="display:inline-block;">
+            <div style="display:flex;flex-direction:row;">
+            <div class="team2">{team2}</div>
+            <div style="display:flex;flex-direction:column;">
+              <div class="team1">{team1}</div>
+                <div class="sbtable">
+
         <table>
     """
     # score digit header row
@@ -95,14 +103,14 @@ def generate_html(rows):
         for player in row:
             html += f"    <td class='player'>{player}</td>\n"
         html += "  </tr>\n"
-    html += "</table></body></html>"
+    html += "</table></div></div></div></div></body></html>"
     return html
 
-def write_html(rows, filename):
+def write_html(rows, team1, team2, filename):
     with open(filename, 'w') as htmlfile:
-        htmlfile.write(generate_html(rows))
+        htmlfile.write(generate_html(rows, team1, team2))
 
 
 if __name__ == "__main__":
-    players = [f"P{n+1}" for n in range(25)] # replace with list of player names
-    generate_squares(players, "Team 1", "Team 2")
+    players = [f"P{n+1}" for n in range(24)] # replace with list of player names
+    generate_squares(players, "Chiefs", "Buccaneers")
